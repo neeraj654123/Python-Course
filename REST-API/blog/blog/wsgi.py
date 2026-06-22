@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# Point Django to the blog project's settings module
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
 
+# Create the WSGI application object used by web servers (e.g., Gunicorn, Apache)
 application = get_wsgi_application()

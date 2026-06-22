@@ -6,8 +6,10 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    # Set the default settings module for the 'blog' project
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
     try:
+        # Import Django's command-line execution utility
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
@@ -15,8 +17,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    # Run the management command passed via command-line args (e.g., runserver, migrate)
     execute_from_command_line(sys.argv)
 
 
+# Entry point — only runs when executed directly (not when imported)
 if __name__ == '__main__':
     main()

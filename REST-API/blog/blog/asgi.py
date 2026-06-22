@@ -11,6 +11,8 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+# Point Django to the blog project's settings module
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
 
+# Create the ASGI application object used by async servers (e.g., Daphne, Uvicorn)
 application = get_asgi_application()

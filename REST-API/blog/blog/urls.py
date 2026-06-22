@@ -14,10 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# Import Django admin module and URL routing utilities
 from django.contrib import admin
 from django.urls import path
+# Import custom API views from the helloworld app
 from helloworld.views import HelloWorldView
+from rest_framework import routers
+from helloworld.views import PostView
+
+# Define URL patterns — maps URL paths to their corresponding views
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello',HelloWorldView.as_view())
+    path('admin/', admin.site.urls),         # Django admin panel
+    path('hello',HelloWorldView.as_view())   # Simple hello world API endpoint
 ]
+
+# Create a DRF router to auto-generate CRUD URLs for the Post model
+router =routers.SimpleRouter()
+router.register('posts',PostView)  # Registers /posts/ endpoint with all CRUD operations
+# Append the router-generated URLs to the main urlpatterns
+urlpatterns += router.urls

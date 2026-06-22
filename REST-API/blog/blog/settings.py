@@ -31,14 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    "rest_framework",
-    "helloworld",
+    'django.contrib.admin',          # Admin panel
+    'django.contrib.auth',           # Authentication framework
+    'django.contrib.contenttypes',   # Content type system
+    'django.contrib.sessions',       # Session management
+    'django.contrib.messages',       # Messaging framework
+    'django.contrib.staticfiles',    # Static file handling
+    "rest_framework",                # Django REST Framework for building APIs
+    "helloworld",                    # Custom app with Post model and API views
 ]
 
 MIDDLEWARE = [
@@ -81,7 +81,11 @@ DATABASES = {
     }
 }
 
-
+# DRF global settings — applies to all API views
+REST_FRAMEWORK={
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',  # Enable page-based pagination
+    'PAGE_SIZE':5  # Return 5 results per page
+}
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
