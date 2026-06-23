@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',       # Messaging framework
     'django.contrib.staticfiles',    # Static file handling
     "rest_framework",                # Django REST Framework for building APIs
-    "helloworld",                    # Custom app with Post model and API views
+    "helloworld",
+    'rest_framework.authtoken'                    # Custom app with Post model and API views
 ]
 
 MIDDLEWARE = [
@@ -82,9 +83,15 @@ DATABASES = {
 }
 
 # DRF global settings — applies to all API views
-REST_FRAMEWORK={
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',  # Enable page-based pagination
-    'PAGE_SIZE':5  # Return 5 results per page
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ]
 }
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

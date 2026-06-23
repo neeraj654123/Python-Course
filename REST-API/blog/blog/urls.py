@@ -15,21 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # Import Django admin module and URL routing utilities
+from django.urls import include
 from django.contrib import admin
 from django.urls import path
-# Import custom API views from the helloworld app
-from helloworld.views import HelloWorldView
 from rest_framework import routers
-from helloworld.views import PostView
+from rest_framework.authtoken.views import obtain_auth_token
 
-# Define URL patterns — maps URL paths to their corresponding views
+from helloworld.views import HelloWorldView, PostView
+
 urlpatterns = [
-    path('admin/', admin.site.urls),         # Django admin panel
-    path('hello',HelloWorldView.as_view())   # Simple hello world API endpoint
+    path('admin/', admin.site.urls),
+    path('hello/', HelloWorldView.as_view()),
+    path('api-token-auth/', obtain_auth_token),         # POST username+password → get token
+    path('api-auth/', include('rest_framework.urls')),   # Browsable API login/logout
 ]
 
-# Create a DRF router to auto-generate CRUD URLs for the Post model
-router =routers.SimpleRouter()
-router.register('posts',PostView)  # Registers /posts/ endpoint with all CRUD operations
-# Append the router-generated URLs to the main urlpatterns
+router = routers.SimpleRouter()
+router.register('posts', PostView)
+
 urlpatterns += router.urls
