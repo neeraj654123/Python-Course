@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',    # Static file handling
     "rest_framework",                # Django REST Framework for building APIs
     "helloworld",
-    'rest_framework.authtoken'                    # Custom app with Post model and API views
+    'rest_framework.authtoken',   
+    'django_filters'                # Custom app with Post model and API views
 ]
 
 MIDDLEWARE = [

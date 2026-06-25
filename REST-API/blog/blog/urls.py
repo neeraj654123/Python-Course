@@ -20,7 +20,6 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-
 from helloworld.views import HelloWorldView, PostView
 
 urlpatterns = [
@@ -31,6 +30,6 @@ urlpatterns = [
 ]
 
 router = routers.SimpleRouter()
-router.register('posts', PostView)
+router.register('posts', PostView,basename='post')
 
 urlpatterns += router.urls
