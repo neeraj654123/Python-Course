@@ -1,0 +1,25 @@
+import cv2
+import numpy as np 
+img=cv2.imread('C:/Users/asus/OneDrive/Desktop/traffic.jpg')
+widht=600
+height=550
+dim =(widht,height)
+resized=cv2.resize(img,dim)
+kernel=np.ones((5,5),dtype=np.uint8)
+erosion=cv2.erode(resized,kernel,iterations=1)
+dialation =cv2.dilate(resized,kernel,iterations=1)
+opening=cv2.morphologyEx(resized,cv2.MORPH_OPEN,kernel)
+closing=cv2.morphologyEx(resized,cv2.MORPH_CLOSE,kernel)
+gradient=cv2.morphologyEx(resized,cv2.MORPH_GRADIENT,kernel)
+top_hat=cv2.morphologyEx(resized,cv2.MORPH_TOPHAT,kernel)
+black_hat=cv2.morphologyEx(resized,cv2.MORPH_BLACKHAT,kernel)
+cv2.imshow('Original image',resized)
+# cv2.imshow('erison',erosion)
+# cv2.imshow('dialation',dialation)
+# cv2.imshow('opening',opening)
+# cv2.imshow('closing',closing)
+# cv2.imshow('gradient',gradient)
+cv2.imshow('top_hat',top_hat)
+cv2.imshow('black_hat',black_hat)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
