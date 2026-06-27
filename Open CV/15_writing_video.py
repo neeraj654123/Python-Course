@@ -6,6 +6,7 @@ output=cv2.VideoWriter('output.mp4',fourcc,30.0,(800,600),True)
 while video.isOpened():
     ret,frame=video.read()
     if ret:
+        frame = cv2.resize(frame, (800, 600))
         output.write(frame)
         cv2.imshow('frame',frame)
         if cv2.waitKey(10) & 0xFF==ord('q'):
